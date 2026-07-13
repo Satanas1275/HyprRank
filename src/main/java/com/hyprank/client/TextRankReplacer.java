@@ -17,10 +17,6 @@ public class TextRankReplacer {
 
         MutableComponent result = Component.empty();
 
-        // component.visit() resolves the WHOLE tree (literal, translatable args,
-        // siblings, etc.) into flat (style, text) chunks. Most chat messages are
-        // built with Component.translatable(...), which is why walking getContents()
-        // directly (the old approach) silently missed almost every real message.
         original.visit((style, text) -> {
             appendProcessed(result, text, style);
             return Optional.empty();
@@ -48,9 +44,16 @@ public class TextRankReplacer {
                     glyph.setStyle(style.withFont(new FontDescription.Resource(font)));
                     result.append(glyph);
                 } else {
-                    String rankText = "[" + rank.name + "]";
-                    result.append(Component.literal(rankText).withStyle(
-                            style.withColor(TextColor.fromRgb(rank.color))));
+                    String currentVariant = RankManager.getCurrentVariant();
+                    String customFormat = TextStyleStore.getRankFormat(currentVariant, rank.name);
+
+                    if (customFormat != null) {
+                        result.append(TextFormatParser.parse(customFormat, rank.name, rank.color));
+                    } else {
+                        String rankText = "[" + rank.name + "]";
+                        result.append(Component.literal(rankText).withStyle(
+                                style.withColor(TextColor.fromRgb(rank.color))));
+                    }
                 }
             } else {
                 buffer.append(c);
