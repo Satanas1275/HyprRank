@@ -1,10 +1,10 @@
 package com.hyprank.client;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FontDescription;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.Identifier;
 
 import java.util.Optional;
@@ -42,15 +42,15 @@ public class TextRankReplacer {
                     buffer.setLength(0);
                 }
 
-                if (RankManager.getCurrentMode() == RankManager.RenderMode.IMAGE) {
+                Identifier font = RankManager.getCurrentFont();
+                if (font != null) {
                     MutableComponent glyph = Component.literal(String.valueOf(c));
-                    glyph.setStyle(style.withFont(
-                            new FontDescription.Resource(Identifier.parse("hyprrank:rank_glyphs"))));
+                    glyph.setStyle(style.withFont(new FontDescription.Resource(font)));
                     result.append(glyph);
                 } else {
                     String rankText = "[" + rank.name + "]";
                     result.append(Component.literal(rankText).withStyle(
-                            style.withColor(ChatFormatting.WHITE)));
+                            style.withColor(TextColor.fromRgb(rank.color))));
                 }
             } else {
                 buffer.append(c);

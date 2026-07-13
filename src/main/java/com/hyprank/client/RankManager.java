@@ -1,13 +1,27 @@
 package com.hyprank.client;
 
-import net.minecraft.ChatFormatting;
+import net.minecraft.resources.Identifier;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class RankManager {
-    public enum RenderMode { IMAGE, TEXT }
 
-    private static RenderMode currentMode = RenderMode.IMAGE;
+    /**
+     * Built-in variant name for the bracket-text fallback ("[Member]" etc.),
+     * always available even if no texture variants are registered.
+     */
+    public static final String TEXT_VARIANT = "text";
+
+    /** Default built-in texture variant, backed by the bundled font. */
+    public static final String DEFAULT_TEXTURE_VARIANT = "texture";
+
+    private static String currentVariant = DEFAULT_TEXTURE_VARIANT;
+
+    // variant name -> font Identifier. null value = bracket-text mode (TEXT_VARIANT).
+    private static final Map<String, Identifier> variants = new LinkedHashMap<>();
+
     private static final Map<Character, RankData> localMappings = new LinkedHashMap<>();
     private static final Map<String, Character> rankToChar = new LinkedHashMap<>();
 
@@ -38,6 +52,9 @@ public class RankManager {
         register('\uE817', "Broadcast", 0xFF5555);
         register('\uE818', "Partner", 0xFFAA00);
         register('\uE819', "NPC", 0xFFFF55);
+
+        variants.put(TEXT_VARIANT, null);
+        variants.put(DEFAULT_TEXTURE_VARIANT, Identifier.parse("hyprrank:rank_glyphs"));
     }
 
     private static void register(char glyph, String name, int color) {
@@ -47,20 +64,49 @@ public class RankManager {
     }
 
     public static void init() {
-        StringBuilder sb = new StringBuilder();
-        for (Character c : localMappings.keySet()) {
-            sb.append(String.format("U+%04X ", (int) c));
-        }
-        com.hyprank.HyprRank.LOGGER.info("[hyprrank-debug] registered glyph codepoints: {}", sb);
+        com.hyprank.HyprRank.LOGGER.info("[hyprrank] {} ranks, {} style variants available: {}",
+                localMappings.size(), variants.size(), variants.keySet());
     }
 
-    public static RenderMode getCurrentMode() { return currentMode; }
+    // ---- Style / variant handling ----
 
-    public static void toggleMode() {
-        currentMode = (currentMode == RenderMode.IMAGE) ? RenderMode.TEXT : RenderMode.IMAGE;
+    public static String getCurrentVariant() { return currentVariant; }
+
+    public static Set<String> getAvailableVariants() { return variants.keySet(); }
+
+    public static boolean isValidVariant(String name) { return variants.containsKey(name); }
+
+    /**
+     * Registers (or overrides) a style variant. Pass fontId=null for a bracket-text
+     * style, or a font resource Identifier (e.g. "hyprrank:rank_glyphs_neon") for an
+     * image style backed by a font provider bundled in a resource pack.
+     */
+    public static void registerVariant(String name, Identifier fontId) {
+        variants.put(name, fontId);
     }
 
-    public static void setMode(RenderMode mode) { currentMode = mode; }
+    /**
+     * Switches the active style and triggers a live re-render of the chat history
+     * so already-displayed messages pick up the new style immediately.
+     */
+    public static boolean setVariant(String name) {
+        if (!isValidVariant(name)) return false;
+        if (name.equals(currentVariant)) return true;
+        currentVariant = name;
+        ChatHistoryStore.replayAll();
+        return true;
+    }
+
+    /** Font to use for the current variant, or null if the current variant is bracket-text. */
+    public static Identifier getCurrentFont() {
+        return variants.get(currentVariant);
+    }
+
+    public static boolean isCurrentVariantText() {
+        return getCurrentFont() == null;
+    }
+
+    // ---- Rank char lookup ----
 
     public static RankData getRankByChar(char c) { return localMappings.get(c); }
 
