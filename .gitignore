@@ -1,0 +1,10 @@
+build/
+.gradle/
+.idea/
+*.iml
+libs/
+run/
+jdk-25/
+src.zip
+init.gradle
+MODDING_SETUP.md

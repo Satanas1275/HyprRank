@@ -1,0 +1,30 @@
+{
+  "providers": [
+    {"type": "bitmap", "file": "hyprrank:glyphs/member.png", "ascent": 8, "height": 8, "chars": ["\uE000"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/media.png", "ascent": 8, "height": 8, "chars": ["\uE001"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/manager.png", "ascent": 8, "height": 8, "chars": ["\uE002"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/helper.png", "ascent": 8, "height": 8, "chars": ["\uE003"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/mvp.png", "ascent": 8, "height": 8, "chars": ["\uE004"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/mvpplus.png", "ascent": 8, "height": 8, "chars": ["\uE005"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/mvpplusplus.png", "ascent": 8, "height": 8, "chars": ["\uE006"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/mod.png", "ascent": 8, "height": 8, "chars": ["\uE007"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/noob.png", "ascent": 8, "height": 8, "chars": ["\uE008"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/owner.png", "ascent": 8, "height": 8, "chars": ["\uE009"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/admin.png", "ascent": 8, "height": 8, "chars": ["\uE00A"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/pro.png", "ascent": 8, "height": 8, "chars": ["\uE00B"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/twitch.png", "ascent": 8, "height": 8, "chars": ["\uE00C"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/og.png", "ascent": 8, "height": 8, "chars": ["\uE00D"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/builder.png", "ascent": 8, "height": 8, "chars": ["\uE00E"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/vip.png", "ascent": 8, "height": 8, "chars": ["\uE00F"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/vipplus.png", "ascent": 8, "height": 8, "chars": ["\uE010"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/dev.png", "ascent": 8, "height": 8, "chars": ["\uE011"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/designer.png", "ascent": 8, "height": 8, "chars": ["\uE012"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/god.png", "ascent": 8, "height": 8, "chars": ["\uE013"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/elite.png", "ascent": 8, "height": 8, "chars": ["\uE014"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/eliteplus.png", "ascent": 8, "height": 8, "chars": ["\uE015"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/youtube.png", "ascent": 8, "height": 8, "chars": ["\uE016"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/broadcast.png", "ascent": 8, "height": 8, "chars": ["\uE017"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/partner.png", "ascent": 8, "height": 8, "chars": ["\uE018"]},
+    {"type": "bitmap", "file": "hyprrank:glyphs/npc.png", "ascent": 8, "height": 8, "chars": ["\uE019"]}
+  ]
+}
