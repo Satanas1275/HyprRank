@@ -4,8 +4,11 @@
   "version": "${version}",
   "name": "HyprRank",
   "description": "Remplace les noms de rank par des glyphes (images ou texte coloré)",
-  "authors": ["HyprRank"],
-  "contact": {},
+  "authors": ["Satanas1275"],
+  "contact": {
+    "sources": "https://github.com/Satanas1275/HyprRank",
+    "issues": "https://github.com/Satanas1275/HyprRank/issues"
+  },
   "license": "CC-BY-NC-4.0",
   "icon": "assets/hyprrank/icon.png",
   "environment": "*",
