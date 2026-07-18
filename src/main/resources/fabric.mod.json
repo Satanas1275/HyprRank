@@ -3,7 +3,7 @@
   "id": "hyprrank",
   "version": "${version}",
   "name": "HyprRank",
-  "description": "Remplace les noms de rank par des glyphes (images ou texte coloré)",
+  "description": "HyprRank replaces rank text (Member, VIP, MVP, Owner...) in chat and the tab list with colorful glyphs/textures, fully syncable from the server.",
   "authors": ["Satanas1275"],
   "contact": {
     "sources": "https://github.com/Satanas1275/HyprRank",
